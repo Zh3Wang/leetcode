@@ -1,28 +1,28 @@
 class MinStack:
     def __init__(self):
         self.stack = []
-        self.minItem = []
+        self.minItem = None
         
     def push(self, x: int) -> None:
         self.stack.append(x)
-        #如果最小值栈为空，直接入栈
-        if not self.minItem:
-            self.minItem.append(x)
-        elif x <= self.minItem[-1]:
-            self.minItem.append(x)
-        
+        if self.minItem == None or self.minItem > x:
+            self.minItem = x
+
     def pop(self) -> None:
         if not self.stack:
             return
         x = self.stack.pop() 
-        if x == self.minItem[-1]:
-            self.minItem.pop()
+        if not self.stack:
+            self.minItem = None
+        elif x == self.minItem:
+            self.minItem = x
        
+
     def top(self) -> int:
         return self.stack[-1]
 
     def getMin(self) -> int:
-        return self.minItem[-1]
+        return self.minItem
 
 minStack = MinStack()
 minStack.pop()
