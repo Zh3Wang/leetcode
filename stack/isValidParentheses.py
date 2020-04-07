@@ -12,7 +12,7 @@ def isValidParentheses(str):
                 return False
             stack.pop()
     return not stack
-                    
+
 
 str = input()
 print(isValidParentheses(str))
