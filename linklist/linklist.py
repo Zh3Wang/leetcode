@@ -76,4 +76,4 @@ class LinkList(object):
         return data
 
 
-L = LinkList()
+List = LinkList()
