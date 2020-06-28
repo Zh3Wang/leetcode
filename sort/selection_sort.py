@@ -20,7 +20,7 @@ def selection_sort(lst):
             lst[i],lst[min] = lst[min],lst[i]
     return lst
 
-lst = [3,5,4,1,2,6]
+lst = [3,5,4,1,2,9,6,8]
 print(lst)
 lst = selection_sort(lst)
 print(lst)
