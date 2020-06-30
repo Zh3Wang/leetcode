@@ -1,13 +1,21 @@
-def sort(lst):
-    n = len(lst)
-    for i in range(n):
-        min = i
-        for j in range(i+1,n):
-            if lst[min] > lst[j]:
-                min = j
-        if min != i:
-            lst[min],lst[i] = lst[i],lst[min]
-    return lst
+def sort(A,m,B,n):
+    for k in range(n):
+        value = B[k]
+        j = m - 1
+        while j >= 0 and value < A[j]:
+            A[j+1] = A[j]
+            j -= 1
+        m = m + 1
+        A[j+1] = value
+    return A
+
+    
+A = [1,2,3,0,0,0]
+m = 3
+n = 3
+B = [2,5,6]
+print(sort(A,m,B,n))
+quit()
 
 lst = [3,5,4,1,2,9,6,8]
 print(lst)
