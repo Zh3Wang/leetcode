@@ -1,29 +1,41 @@
 def sort(lst):
-    n = len(lst)
-    lst = quick_sort(lst,0,n-1)
-    return lst
-
-def quick_sort(lst,head,tail):
-    if head >= tail:
-        return
+    l = len(lst)
+    min = lst[0]
+    max = lst[0]
+    for j in range(1,l):
+        if lst[j] < min:
+            min = lst[j]
+        elif lst[j] > max:
+            max = lst[j]
     
-    pivot = partition(lst,head,tail)
-    quick_sort(lst,head,pivot-1)
-    quick_sort(lst,pivot+1,tail)
+    new = []
+    for i in lst:
+        if i == min or i == max:
+            continue
+        new.append(i)
+    return new
     
-    return lst
 
-def partition(lst,head,tail):
-    pivot = lst[tail]
-    i,j = head,head
-    for j in range(head,tail):
-        if lst[j] < pivot:
-            lst[i],lst[j] = lst[j],lst[i]
-            i += 1
-    lst[i],lst[tail] = lst[tail],lst[i]
-    return i
+def test(s):
+    l = len(s)+1
+    for i in range(1,l):
+        subs = s.split(s[0:i])
+        flag = True
+        for j in subs:
+            if j != '':
+                flag = False
+                break
+        if flag == True:
+            count = len(subs)-1
+            value = s[0:i]
+            break
+        
+    return count,value
 
-lst = [3,5,4,1,2,9,6,8]
+lst = [3,3,4,5,6,7,7]
+lst = 'aabaa'
 print(lst)
-lst = sort(lst)
-print(lst)
+count,value = test(lst)
+print(count,value)
+
+
