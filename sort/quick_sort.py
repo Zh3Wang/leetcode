@@ -23,7 +23,7 @@ def partition(lst,head,tail):
     lst[i],lst[tail] = lst[tail],lst[i]
     return i
 
-lst = [3,6,7,4,1,2,9,8,5]
+lst = [8,3,1,5,5,17,12]
 print(lst)
 n = len(lst)
 lst = quick_sort(lst,0,n-1)

@@ -1,41 +1,28 @@
-def sort(lst):
-    l = len(lst)
-    min = lst[0]
-    max = lst[0]
-    for j in range(1,l):
-        if lst[j] < min:
-            min = lst[j]
-        elif lst[j] > max:
-            max = lst[j]
+def quick_sort(lst,head,tail):
+    if head >= tail:
+        return
     
-    new = []
-    for i in lst:
-        if i == min or i == max:
-            continue
-        new.append(i)
-    return new
+    pivot = partioned(lst,head,tail)
+    quick_sort(lst,head,pivot-1)
+    quick_sort(lst,pivot+1,tail)
+    
+    return lst
     
 
-def test(s):
-    l = len(s)+1
-    for i in range(1,l):
-        subs = s.split(s[0:i])
-        flag = True
-        for j in subs:
-            if j != '':
-                flag = False
-                break
-        if flag == True:
-            count = len(subs)-1
-            value = s[0:i]
-            break
-        
-    return count,value
+def partioned(lst,head,tail):
+    # 默认取最后一位数为分区点
+    pivot = lst[tail]
+    i,j = head,head
+    for j in range(head,tail):
+        if lst[j] < pivot:
+            lst[i],lst[j] = lst[j],lst[i]
+            i += 1
+    lst[i],lst[tail] = lst[tail],lst[i]
+    return i
 
-lst = [3,3,4,5,6,7,7]
-lst = 'aabaa'
+lst = [8,3,1,5,2,17,12,5]
 print(lst)
-count,value = test(lst)
-print(count,value)
+lst = quick_sort(lst,0,len(lst)-1)
+print(lst)
 
 
