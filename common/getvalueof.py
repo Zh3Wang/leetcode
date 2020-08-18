@@ -6,7 +6,7 @@
 @Desc    :   查找第K大的元素
 '''
 
-def test(lst,k,head,tail):
+def get_value_of(lst,k,head,tail):
     if head >= tail:
         # 如果找到某一个分组的最后一个元素,还没找到K值,那当前这个元素就是第K大的元素
         return lst[tail]
@@ -31,5 +31,5 @@ def partition(lst,head,tail):
 
 lst = [8,3,1,5,2,17,12,6]
 print(lst)
-val = test(lst,5,0,len(lst)-1)
+val = get_value_of(lst,5,0,len(lst)-1)
 print(val)

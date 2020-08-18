@@ -9,7 +9,7 @@
 
 '''
 
-def test(s):
+def count_words(s):
     l = len(s)+1
     for i in range(1,l):
         # 先按字母分割,从首位字母开始->全部字母
@@ -30,5 +30,5 @@ def test(s):
 
 lst = 'aabaa'
 print(lst)
-count,value = test(lst)
+count,value = count_words(lst)
 print(count,value)
