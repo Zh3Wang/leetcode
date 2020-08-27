@@ -25,7 +25,7 @@ def binary_search_rec(lst,val):
 
 def search(lst,low,high,val):
     if low > high:
-        return -1
+        return 'find nothing..'
     mid = (low+high)//2
     if lst[mid] == val:
         return mid
@@ -35,5 +35,5 @@ def search(lst,low,high,val):
         return search(lst,low,mid-1,val)
 
 lst = [1,1,3,4,10,99,1,158,666]
-pos = binary_search_rec(lst,1)
+pos = binary_search_rec(lst,6)
 print(pos)
