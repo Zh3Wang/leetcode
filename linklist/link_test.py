@@ -24,7 +24,7 @@ class Solution:
     
     # 递归
     def reverse_digui(self,head):
-        if not head or not head.next:
+        if not head.next or not head:
             return head
         new_head = self.reverse_digui(head.next)
         head.next.next = head
@@ -33,8 +33,8 @@ class Solution:
 List.init_list([1, 2, 3, 4, 5])
 print(List.get_all_items())
 sl = Solution()
-# new_head = sl.reverse_curcle(List.head)
-new_head = sl.reverse_digui(List.head)
+new_head = sl.reverse_curcle(List.head)
+# new_head = sl.reverse_digui(List.head)
 new_l = []
 while new_head:
     new_l.append(new_head.data)

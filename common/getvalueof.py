@@ -14,9 +14,9 @@ def get_value_of(lst,k,head,tail):
     if pivot+1 == k:
         val = lst[pivot]
     elif pivot+1 > k:
-        val = test(lst,k,head,pivot-1)
+        val = get_value_of(lst,k,head,pivot-1)
     elif pivot+1 < k:
-        val = test(lst,k,pivot+1,tail)
+        val = get_value_of(lst,k,pivot+1,tail)
     return val
 
 def partition(lst,head,tail):
