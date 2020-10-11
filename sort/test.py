@@ -1,13 +1,17 @@
-def sort(lst):
-    n = len(lst)
-    for i in range(n):
-        min = i
-        for j in range(i+1,n):
-            if lst[j] < lst[min]:
-                min = j
-        if min != i:
-            lst[i],lst[min] = lst[min],lst[i]
-    return lst
+def test(a,b,c):
+    if a >= b:
+        return
+    
+    a += 1
+    c += 1 
+    test(a,b,c)
+    print(a)
+    return c
+    
+
+print(test(1,5,0))
+quit()
+
 
 lst = [3,5,4,1,2,9,6,8]
 print(lst)
