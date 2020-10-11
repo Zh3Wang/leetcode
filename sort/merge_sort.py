@@ -45,7 +45,7 @@ def merge(lst,head,mid,tail):
     while start <= end:
         tmp.append(lst[start])
         start += 1
-    
+
     # 此时tmp数组中是已经合并且排序好的元素集合
     # 再将tmp数组放回原数组lst中
     for n in range(tail-head+1):
