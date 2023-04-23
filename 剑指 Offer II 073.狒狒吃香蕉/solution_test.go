@@ -53,16 +53,57 @@
 package cn
 
 import (
+	"fmt"
 	"testing"
 )
 
 func TestNZZqjQ(t *testing.T) {
-
+	a := minEatingSpeed([]int{312884470}, 312884469)
+	fmt.Println(a)
 }
 
 // leetcode submit region begin(Prohibit modification and deletion)
 func minEatingSpeed(piles []int, h int) int {
+	if h < len(piles) {
+		return -1
+	}
+	left, right := 1, 0
+	for _, v := range piles {
+		right = max(right, v)
+	}
 
+	var res = 0
+	for left <= right {
+		mid := left + (right-left)/2
+		t := eatSpendTime(piles, mid)
+		if t <= h {
+			res = mid
+			right = mid - 1
+		} else {
+			left = mid + 1
+		}
+	}
+	return res
+}
+
+// 计算指定速度吃完所有香蕉要花多久时间
+func eatSpendTime(piles []int, speed int) int {
+	var t int
+	for _, p := range piles {
+		v, mod := p/speed, p%speed
+		if mod > 0 {
+			v++
+		}
+		t += v
+	}
+	return t
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
