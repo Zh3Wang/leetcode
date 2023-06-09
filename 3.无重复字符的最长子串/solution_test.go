@@ -46,26 +46,26 @@ import (
 )
 
 func TestLongestSubstringWithoutRepeatingCharacters(t *testing.T) {
-	s := "pwwkew"
+	s := " "
 	fmt.Println(lengthOfLongestSubstring(s))
 }
 
 // leetcode submit region begin(Prohibit modification and deletion)
 func lengthOfLongestSubstring(s string) int {
-	var window = make(map[byte]int)
-
-	var left, right, ans int
+	var windows = make(map[byte]int)
+	var left, right, ans = 0, 0, 0
 	for right < len(s) {
 		c := s[right]
 		right++
-		window[c]++
-		if window[c] == 1 && right-left > ans {
+		windows[c]++
+
+		if windows[c] == 1 && ans < right-left {
 			ans = right - left
 		}
 
-		for window[c] > 1 {
+		for windows[c] > 1 {
 			cc := s[left]
-			window[cc]--
+			windows[cc]--
 			left++
 		}
 
@@ -74,4 +74,4 @@ func lengthOfLongestSubstring(s string) int {
 	return ans
 }
 
-//leetcode submit region end(Prohibit modification and deletion)
+// leetcode submit region end(Prohibit modification and deletion)
