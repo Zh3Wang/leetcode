@@ -70,6 +70,50 @@ func minWindow(s string, t string) string {
 	var need = make(map[byte]int)
 	var window = make(map[byte]int)
 
+	for _, v := range []byte(t) {
+		need[v]++
+	}
+
+	var left, right, valid = 0, 0, 0
+	var start, end = 0, math.MaxInt32
+
+	for right < len(s) {
+		c := s[right]
+		right++
+
+		if _, ok := need[c]; ok {
+			window[c]++
+			if window[c] == need[c] {
+				valid++
+			}
+		}
+
+		for valid >= len(need) {
+			cc := s[left]
+			if right-left < end-start {
+				start, end = left, right
+			}
+			if _, ok := need[cc]; ok {
+				if window[cc] == need[cc] {
+					valid--
+				}
+				window[cc]--
+			}
+			left++
+		}
+	}
+
+	if start == 0 && end == math.MaxInt32 {
+		return ""
+	}
+
+	return s[start:end]
+}
+
+func minWindowV2(s string, t string) string {
+	var need = make(map[byte]int)
+	var window = make(map[byte]int)
+
 	for i := range t {
 		need[t[i]]++
 	}

@@ -48,29 +48,40 @@
 package cn
 
 import (
+	"fmt"
 	"testing"
 )
 
 func TestTwoSum(t *testing.T) {
-
+	fmt.Println(twoSum([]int{2, 7, 11, 15}, 9))
 }
 
 // leetcode submit region begin(Prohibit modification and deletion)
 func twoSum(nums []int, target int) []int {
+	res := make(map[int]int, len(nums))
 	for i, v := range nums {
-		for j, vv := range nums {
-			if i == j {
-				continue
-			}
-			if v+vv == target {
-				return []int{i, j}
-			}
+		k, ok := res[target-v]
+		if ok {
+			return []int{i, k}
 		}
+		res[v] = i
 	}
 
 	return nil
 }
 
+// 双指针解法
+func twoSumDoublePointer(nums []int, target int) []int {
+	for i := 0; i < len(nums); i++ {
+		for j := i + 1; j < len(nums); j++ {
+			if nums[i]+nums[j] == target {
+				return []int{i, j}
+			}
+		}
+
+	}
+	return nil
+}
 func twoSumHash(nums []int, target int) []int {
 	res := make(map[int]int, len(nums))
 	for i, v := range nums {
