@@ -42,6 +42,7 @@ func TestPermutationInString(t *testing.T) {
 }
 
 // leetcode submit region begin(Prohibit modification and deletion)
+
 func checkInclusion(s1 string, s2 string) bool {
 	var windows = make(map[byte]int)
 	var need = make(map[byte]int)
@@ -54,31 +55,34 @@ func checkInclusion(s1 string, s2 string) bool {
 
 	for right < len(s2) {
 		c := s2[right]
-		right++
 
+		// 判断当前字符是否包含在s1中
 		if _, ok := need[c]; ok {
 			windows[c]++
-			if windows[c] == need[c] {
+			if need[c] == windows[c] {
 				valid++
 			}
 		}
 
-		// 如果窗口大于指定字符长度，开始收缩窗口
+		// 先往右推进，再收缩窗口
+		right++
+
+		// 开始收缩窗口, 让窗口始终保持与s1长度一致
 		for right-left >= len(s1) {
-			//
 			if valid == len(need) {
 				return true
 			}
+
 			cc := s2[left]
-			left++
 			if _, ok := need[cc]; ok {
 				if windows[cc] == need[cc] {
 					valid--
 				}
 				windows[cc]--
 			}
-
+			left++
 		}
+
 	}
 
 	return false
