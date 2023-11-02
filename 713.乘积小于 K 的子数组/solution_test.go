@@ -32,16 +32,32 @@
 package cn
 
 import (
+	"fmt"
 	"testing"
 )
 
 func TestSubarrayProductLessThanK(t *testing.T) {
-
+	fmt.Println(numSubarrayProductLessThanK([]int{10, 5, 2, 6}, 100))
 }
 
 // leetcode submit region begin(Prohibit modification and deletion)
 func numSubarrayProductLessThanK(nums []int, k int) int {
+	return 0
+}
 
+func numSubarrayProductLessThanKV2(nums []int, k int) int {
+	var left, right, pre, res = 0, 0, 1, 0
+	for right < len(nums) {
+		pre *= nums[right]
+		for pre >= k && left <= right {
+			pre /= nums[left]
+			left++
+		}
+		right++
+		// 关键是这个累加：窗口每往右滑动一位，则符合条件的结果会增加（当前窗口长度）的数量
+		res += right - left
+	}
+	return res
 }
 
 //leetcode submit region end(Prohibit modification and deletion)

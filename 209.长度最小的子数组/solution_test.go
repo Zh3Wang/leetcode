@@ -56,12 +56,30 @@ import (
 )
 
 func TestMinimumSizeSubarraySum(t *testing.T) {
-	a := minSubArrayLen(7, []int{2, 3, 1, 2, 4, 3})
+	a := minSubArrayLen(11, []int{1, 1, 1, 1, 1, 1, 1, 1})
 	fmt.Println(a)
 }
 
 // leetcode submit region begin(Prohibit modification and deletion)
 func minSubArrayLen(target int, nums []int) int {
+	var left, right, res, sum = 0, 0, math.MaxInt, 0
+	for right < len(nums) {
+		sum += nums[right]
+		right++
+		for sum >= target {
+			res = min(res, right-left)
+			sum -= nums[left]
+			left++
+		}
+	}
+
+	if res == math.MaxInt {
+		return 0
+	}
+	return res
+
+}
+func minSubArrayLenV2(target int, nums []int) int {
 	var left, right, sum int
 	var ans = math.MaxInt
 
